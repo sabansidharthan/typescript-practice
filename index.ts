@@ -122,3 +122,28 @@ personal[Symbol.iterator] = function() {
 for (let p of personal) {
   console.log(p);
 }
+
+//generator
+
+function* createGenerator() {
+  yield 1;
+  console.log('aftr yield 1');
+  yield 2;
+}
+
+let myGen = createGenerator();
+console.log(myGen.next());
+console.log(myGen.next());
+console.log(myGen.next());
+//obj iterator using generator
+
+personal[Symbol.iterator] = function*() {
+  let properties = Object.keys(personal);
+  for (let t of properties) {
+    yield this[t];
+  }
+};
+
+for (let p of personal) {
+  console.log(p);
+}
